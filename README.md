@@ -3,6 +3,12 @@
 AndroidLocationOnlineSDK 是一个室内定位SDK，通过扫描周边ibeacon，将ibeacon数据传输到后端计算获得室内位置。
 
 ## Library引用
+通过jitpack将github上的aar引入到工程中。
+在setting.gradle中添加
+```bash
+    maven { url 'https://jitpack.io' }
+```
+
 在app的build.gradle中添加
 ```bash
     // use jitpack from github
