@@ -2,7 +2,7 @@
 
 AndroidLocationOnlineSDK 是一个室内定位SDK，通过扫描周边ibeacon，将ibeacon数据传输到后端计算获得室内位置。
 
-## Library引用
+## AndroidX工程的Library引用
 通过jitpack将github上的aar引入到工程中。
 在setting.gradle中添加
 ```bash
@@ -16,6 +16,10 @@ AndroidLocationOnlineSDK 是一个室内定位SDK，通过扫描周边ibeacon，
     implementation("com.squareup.okhttp3:okhttp:4.9.2")
     implementation 'org.altbeacon:android-beacon-library:2+'
 ```
+
+## support工程的Library引用
+Android support的项目调用AndroidX提供的aar可能会有问题。我们可以将aar转成支持android support。通过jetifier-standalone工具转化。参考官方链接(https://developer.android.google.cn/studio/command-line/jetifier)
+转换成功后即可用本地aar引入使用
 
 ## 加入权限
 在AndroidMainfest.xxml中添加
