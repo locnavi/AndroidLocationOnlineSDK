@@ -46,6 +46,7 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 在开启定位之前先确认蓝牙及定位的权限已经开启
 ```bash
         verifyBluetooth();
+        verifyLocation();
         requestPermissions();
 ```
 
@@ -70,6 +71,44 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
                     .setMessage("该手机不支持蓝牙，无法使用室内定位功能！")
                     .setPositiveButton(android.R.string.ok, null)
                     .show();
+        }
+    }
+    
+        //判断手机定位功能是否开启
+    private void verifyLocation() {
+        if (!this.isLocationEnabled()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle("定位功能未开启")
+                    .setMessage("室内定位需要定位功能开启后使用")
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //openGPS(MainActivity.this);
+                            //跳转GPS设置界面
+                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            MainActivity.this.startActivity(intent);
+                        }
+                    });
+            builder.setCancelable(true);
+            builder.show();
+        }
+    }
+    
+        //判断定位功能是否开启
+    private boolean isLocationEnabled() {
+        int locationMode = 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+                locationMode = Settings.Secure.getInt(getContentResolver(), Settings.Secure.LOCATION_MODE);
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+        } else {
+            String locationProviders = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+            return !TextUtils.isEmpty(locationProviders);
         }
     }
 
