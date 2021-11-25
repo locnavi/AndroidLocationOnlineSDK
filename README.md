@@ -28,6 +28,9 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    //检测到未打开蓝牙时能自动打开蓝牙
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 ```
 
 ## SDK的使用
@@ -58,11 +61,17 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
     private void verifyBluetooth() {
         try {
             if (!LocNaviClient.getInstanceForApplication(this).checkAvailability()) {
-                new AlertDialog.Builder(this)
-                    .setTitle("蓝牙未开启")
-                    .setMessage("室内定位基于蓝牙扫描，请打开蓝牙使用")
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show();
+                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                boolean isEnabled = bluetoothAdapter.isEnabled();
+                if (!isEnabled) {
+                    //打开蓝牙
+                    bluetoothAdapter.enable();
+                }
+                // new AlertDialog.Builder(this)
+                //     .setTitle("蓝牙未开启")
+                //     .setMessage("室内定位基于蓝牙扫描，请打开蓝牙使用")
+                //     .setPositiveButton(android.R.string.ok, null)
+                //     .show();
             }
         }
         catch (RuntimeException e) {
