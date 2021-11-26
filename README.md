@@ -37,7 +37,7 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 
 ### 初始化
 在Application的onCreate方法中添加
-```bash
+```java
         //初始化SDK
         LocNaviClient client = LocNaviClient.getInstanceForApplication(this);
         client.setBaseUri("http://192.168.2.16:8086");
@@ -47,14 +47,14 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 
 定位权限及蓝牙功能检测
 在开启定位之前先确认蓝牙及定位的权限已经开启
-```bash
+```java
         verifyBluetooth();
         verifyLocation();
         requestPermissions();
 ```
 
 
-```bash
+```java
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int PERMISSION_REQUEST_BACKGROUND_LOCATION = 2;
 
@@ -175,8 +175,43 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 ```
 
 开启定位
-```bash
+```java
   client.start();
 ```
 
-触发事件
+### 触发事件
+
+事件的字段需要提前沟通、后台根据传入的字段做解析
+#### 1、登录事件
+```java
+    //传入用户名、用户id即可
+    client.setUserInfo("pda", "123456");
+```
+#### 2、登出事件
+```java
+    client.setUserInfo(null, null);
+```
+#### 3、开始配送事件
+```java
+        //尽量将有用的配送单的信息都放传入
+        Map properties = new HashMap();
+        properties.put("DELIVERY_CODE", "12344");
+        properties.put("DEPT_STORE_ID", "568");
+        LocNaviEvent.getInstance().track(LocNaviConstants.EVENT_START_DELIVERY, properties);
+```
+#### 4、结束配送事件
+```java
+        //可只传入配送单id
+        Map properties = new HashMap();
+        properties.put("DELIVERY_CODE", "12344");
+        properties.put("DEPT_STORE_ID", "568");
+        LocNaviEvent.getInstance().track(LocNaviConstants.EVENT_END_DELIVERY, properties);
+```
+#### 5、取消配送事件
+```java
+        //可只传入配送单id
+        Map properties = new HashMap();
+        properties.put("DELIVERY_CODE", "12344");
+        properties.put("DEPT_STORE_ID", "568");
+        LocNaviEvent.getInstance().track(LocNaviConstants.EVENT_CANCEL_DELIVERY, properties);
+```
