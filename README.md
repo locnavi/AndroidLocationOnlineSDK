@@ -24,6 +24,7 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 ## 加入权限
 在AndroidMainfest.xxml中添加
 ```bash
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
@@ -197,7 +198,8 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         Map properties = new HashMap();
         properties.put("DELIVERY_CODE", "12344");
         properties.put("DEPT_STORE_ID", "568");
-        LocNaviEvent.getInstance().track(LocNaviConstants.EVENT_START_DELIVERY, properties);
+        LocNaviClient client = LocNaviClient.getInstanceForApplication(this);
+        client.track(LocNaviConstants.EVENT_START_DELIVERY, properties);
 ```
 #### 4、结束配送事件
 ```java
@@ -205,7 +207,8 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         Map properties = new HashMap();
         properties.put("DELIVERY_CODE", "12344");
         properties.put("DEPT_STORE_ID", "568");
-        LocNaviEvent.getInstance().track(LocNaviConstants.EVENT_END_DELIVERY, properties);
+        LocNaviClient client = LocNaviClient.getInstanceForApplication(this);
+        client.track(LocNaviConstants.EVENT_END_DELIVERY, properties);
 ```
 #### 5、取消配送事件
 ```java
@@ -213,5 +216,6 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         Map properties = new HashMap();
         properties.put("DELIVERY_CODE", "12344");
         properties.put("DEPT_STORE_ID", "568");
-        LocNaviEvent.getInstance().track(LocNaviConstants.EVENT_CANCEL_DELIVERY, properties);
+        LocNaviClient client = LocNaviClient.getInstanceForApplication(this);
+        client.track(LocNaviConstants.EVENT_CANCEL_DELIVERY, properties);
 ```
