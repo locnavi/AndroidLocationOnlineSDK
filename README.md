@@ -44,6 +44,8 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         client.setBaseUri("http://192.168.2.16:8086");
         //在App获取到用户信息之后调用
         client.setUserInfo("pda", "123456");
+        //需要跟我们确认采集方式，默认使用BEACON_MODE_IBEACON
+        //client.setBeaconMode(LocNaviConstants.BEACON_MODE_BEACON);
 ```
 
 定位权限及蓝牙功能检测
