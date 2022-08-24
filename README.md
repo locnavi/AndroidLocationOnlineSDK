@@ -14,7 +14,7 @@ AndroidLocationOnlineSDK 是一个室内定位SDK，通过扫描周边ibeacon，
     // use jitpack from github
     implementation 'com.github.locnavi:AndroidLocationOnlineSDK:0.1.3'
     implementation("com.squareup.okhttp3:okhttp:4.9.2")
-    implementation 'org.altbeacon:android-beacon-library:2+'
+    implementation 'org.altbeacon:android-beacon-library:2.19.4'
 ```
 
 ## support工程的Library引用

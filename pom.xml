@@ -6,7 +6,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.locnavi.location.online</groupId>
    <artifactId>locnavi</artifactId>
-   <version>0.1.3</version>
+   <version>0.1.4</version>
   <dependencies>
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
@@ -17,7 +17,7 @@
     <dependency>
       <groupId>org.altbeacon</groupId>
       <artifactId>android-beacon-library</artifactId>
-      <version>2+</version>
+      <version>2.19.4</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
