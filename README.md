@@ -12,8 +12,8 @@ AndroidLocationOnlineSDK 是一个室内定位SDK，通过扫描周边ibeacon，
 在app的build.gradle中添加
 ```bash
     // use jitpack from github
-    implementation 'com.github.locnavi:AndroidLocationOnlineSDK:0.1.3'
-    implementation("com.squareup.okhttp3:okhttp:4.9.2")
+    implementation 'com.github.locnavi:AndroidLocationOnlineSDK:0.1.10'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.2'
     implementation 'org.altbeacon:android-beacon-library:2.19.4'
 ```
 
@@ -44,6 +44,8 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         client.setBaseUri("http://192.168.2.16:8086");
         //在App获取到用户信息之后调用
         client.setUserInfo("pda", "123456");
+        //额外设定蓝牙定位上传的接口url
+        // client.setUploadApi("http://192.168.2.16:3939/tagLocation");
         //需要跟我们确认采集方式，默认使用BEACON_MODE_IBEACON
         //client.setBeaconMode(LocNaviConstants.BEACON_MODE_BEACON);
 ```
@@ -179,7 +181,19 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 
 开启定位
 ```java
+  //默认同时开启LocNaviConstants.LOCATION_MODE_AUTO模式，目前是同时打开蓝牙和GPS，以后应该是在室内用蓝牙，室外用GPS。若只用蓝牙传LOCATION_MODE_ONLY_BEACON，只用GPS传LOCATION_MODE_ONLY_GPS
   client.start();
+```
+
+### 定位监听
+```java
+    LocNaviLocationListener listener = new LocNaviLocationListener() {
+        @Override
+        public void onReceiveLocation(LocNaviLocation location) {
+
+        }
+    };
+    client.registerLocationListener(listener);
 ```
 
 ### 触发事件
