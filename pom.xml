@@ -6,7 +6,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.locnavi.location.online</groupId>
    <artifactId>locnavi</artifactId>
-   <version>0.1.10</version>
+   <version>0.1.11</version>
   <dependencies>
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
