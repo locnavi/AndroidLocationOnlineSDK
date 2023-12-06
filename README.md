@@ -12,7 +12,7 @@ AndroidLocationOnlineSDK 是一个室内定位SDK，通过扫描周边ibeacon，
 在app的build.gradle中添加
 ```bash
     // use jitpack from github
-    implementation 'com.github.locnavi:AndroidLocationOnlineSDK:0.1.10'
+    implementation 'com.github.locnavi:AndroidLocationOnlineSDK:0.1.12'
     implementation 'com.squareup.okhttp3:okhttp:4.9.2'
     implementation 'org.altbeacon:android-beacon-library:2.19.4'
 ```
