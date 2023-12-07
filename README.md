@@ -239,7 +239,10 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 
 ## 使用Intent触发消息
 
+通过Intent可以给定位App发送广播事件。
+
 ### setBaseUri
+```java
         Intent intent = new Intent();
         intent.setAction("com.locanavi.locationonline.broadcast");
         intent.putExtra("method", "setBaseUri");
@@ -247,8 +250,10 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         params.put("uri", "http://192.168.1.1:8000");
         intent.putExtra("params", params);
         sendBroadcast(intent);
+```
 
 ### 登录、登出
+```java
         Intent intent = new Intent();
         intent.setAction("com.locanavi.locationonline.broadcast");
         intent.putExtra("method", "setUserInfo");
@@ -261,8 +266,10 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         //params.put("id", null);
         intent.putExtra("params", params);
         sendBroadcast(intent);
+```
 
 ### 开始定位
+```java
         Intent intent = new Intent();
         intent.setAction("com.locanavi.locationonline.broadcast");
         intent.putExtra("method", "start");
@@ -270,8 +277,10 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         params.put("mode", LocNaviConstants.LOCATION_MODE_AUTO);
         intent.putExtra("params", params);
         sendBroadcast(intent);
+```
 
 ### 停止定位
+```java
         Intent intent = new Intent();
         intent.setAction("com.locanavi.locationonline.broadcast");
         intent.putExtra("method", "stop");
@@ -279,9 +288,11 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         params.put("mode", LocNaviConstants.LOCATION_MODE_AUTO);
         intent.putExtra("params", params);
         sendBroadcast(intent);
+```
 
 
 ### 配送事件
+```java
         Intent intent = new Intent();
         intent.setAction("com.locanavi.locationonline.broadcast");
         intent.putExtra("method", "track");
@@ -296,3 +307,4 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 
         intent.putExtra("params", params);
         sendBroadcast(intent);
+```
