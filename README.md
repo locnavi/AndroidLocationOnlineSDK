@@ -12,7 +12,7 @@ AndroidLocationOnlineSDK 是一个室内定位SDK，通过扫描周边ibeacon，
 在app的build.gradle中添加
 ```bash
     // use jitpack from github
-    implementation 'com.github.locnavi:AndroidLocationOnlineSDK:0.1.14'
+    implementation 'com.github.locnavi:AndroidLocationOnlineSDK:0.1.15'
     implementation 'com.squareup.okhttp3:okhttp:4.9.2'
     implementation 'org.altbeacon:android-beacon-library:2.19.4'
 ```
@@ -48,6 +48,8 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         // client.setUploadApi("http://192.168.2.16:3939/tagLocation");
         //需要跟我们确认采集方式，默认使用BEACON_MODE_IBEACON
         //client.setBeaconMode(LocNaviConstants.BEACON_MODE_BEACON);
+        //默认每5000毫秒检查一下，60次检查手机都没动的话，进入频率更小的蓝牙扫描
+        client.setEnergyMontor(5000, 60)
 ```
 
 定位权限及蓝牙功能检测
