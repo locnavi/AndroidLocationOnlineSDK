@@ -214,8 +214,13 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 ```java
         //尽量将有用的配送单的信息都放传入
         Map properties = new HashMap();
-        properties.put("DELIVERY_CODE", "12344");
-        properties.put("DEPT_STORE_ID", "568");
+        //以下字段必传
+        properties.put("DELIVERY_CODE", "12344");//配送单号 (弃用)
+        properties.put("ID", "12344");//配送单号
+        properties.put("STORE_ID", "568"); //出库库房ID
+        properties.put("STORE_NAME", "大库房"); //出库库Name
+        properties.put("DEPT_STORE_ID", "569"); //目的地库库房ID
+        properties.put("DEPT_STORE_NAME", "小库房"); //目的地库库Name
         LocNaviClient client = LocNaviClient.getInstanceForApplication(this);
         client.track(LocNaviConstants.EVENT_START_DELIVERY, properties);
 ```
@@ -223,8 +228,13 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 ```java
         //可只传入配送单id
         Map properties = new HashMap();
-        properties.put("DELIVERY_CODE", "12344");
-        properties.put("DEPT_STORE_ID", "568");
+        //以下字段必传
+        properties.put("DELIVERY_CODE", "12344");//配送单号 (弃用)
+        properties.put("ID", "12344");//配送单号
+        properties.put("STORE_ID", "568"); //出库库房ID
+        properties.put("STORE_NAME", "大库房"); //出库库Name
+        properties.put("DEPT_STORE_ID", "569"); //目的地库库房ID
+        properties.put("DEPT_STORE_NAME", "小库房"); //目的地库库Name
         LocNaviClient client = LocNaviClient.getInstanceForApplication(this);
         client.track(LocNaviConstants.EVENT_END_DELIVERY, properties);
 ```
@@ -232,8 +242,13 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
 ```java
         //可只传入配送单id
         Map properties = new HashMap();
-        properties.put("DELIVERY_CODE", "12344");
-        properties.put("DEPT_STORE_ID", "568");
+        //以下字段必传
+        properties.put("DELIVERY_CODE", "12344");//配送单号 (弃用)
+        properties.put("ID", "12344");//配送单号
+        properties.put("STORE_ID", "568"); //出库库房ID
+        properties.put("STORE_NAME", "大库房"); //出库库Name
+        properties.put("DEPT_STORE_ID", "569"); //目的地库库房ID
+        properties.put("DEPT_STORE_NAME", "小库房"); //目的地库库Name
         LocNaviClient client = LocNaviClient.getInstanceForApplication(this);
         client.track(LocNaviConstants.EVENT_CANCEL_DELIVERY, properties);
 ```
@@ -303,8 +318,13 @@ Android support的项目调用AndroidX提供的aar可能会有问题。我们可
         //其他的配送事件只需要替换如下内容
         params.put("event", LocNaviConstants.EVENT_CANCEL_DELIVERY);
         Map properties = new HashMap();
-        properties.put("DELIVERY_CODE", "12344");
-        properties.put("DEPT_STORE_ID", "568");
+        //以下字段必传
+        properties.put("DELIVERY_CODE", "12344");//配送单号 (弃用)
+        properties.put("ID", "12344");//配送单号
+        properties.put("STORE_ID", "568"); //出库库房ID
+        properties.put("STORE_NAME", "大库房"); //出库库Name
+        properties.put("DEPT_STORE_ID", "569"); //目的地库库房ID
+        properties.put("DEPT_STORE_NAME", "小库房"); //目的地库库Name
         params.put("properties", properties);
 
         intent.putExtra("params", params);
